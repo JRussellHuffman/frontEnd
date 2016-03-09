@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>learning!</title>
+</head>
+<body>
+	learning is fun
+
+	<form>
+		<input type="text" name="first">
+	</form>
+
+	<div class="text-test">
+		
+	</div>
+
+
+	<script type="text/javascript">
+
+		function checkHash() {
+			if(window.location.hash) {
+			  var withHash = window.location.hash;
+			  contentHash = withHash.slice( 1 ); //remove the hash and store just the value
+			  console.log(contentHash)
+			} else {
+			  console.log("no hash");
+			}
+		}
+
+		checkHash();
+
+	</script>
+
+
+</body>
+</html>
