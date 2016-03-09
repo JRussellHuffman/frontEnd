@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>learning!</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+	learning is fun
+
+	<form>
+		<input type="text" name="first" id="user_input">
+		<input type="text" name="second">
+		<input type="text" name="third">
+		<input type="submit" value="Submit" onclick="showInput()">
+	</form>
+
+	<div class="result">
+
+	</div>
+
+
+	<script type="text/javascript">
+
+		// function checkHash() {
+		// 	if(window.location.hash) {
+		// 	  var withHash = window.location.hash;
+		// 	  contentHash = withHash.slice( 1 );
+		// 	  console.log(contentHash)
+		// 	} else {
+		// 	  console.log("no hash");
+		// 	}
+		// }
+
+		function getURL() {
+			var query = window.location.search.slice(1);
+			var queryTest= query.substr(0, query.indexOf('&')); 
+			$("div.result").html(queryTest);
+			console.log(queryTest)
+		}
+
+		getURL();
+
+	</script>
+
+
+</body>
+</html>
