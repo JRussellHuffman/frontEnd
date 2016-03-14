@@ -115,6 +115,7 @@
 	?>
 
 	<script>
+	var addToURL = "results.html?";
 		//slider
 		$(function() {
 		    $( "#slider-range" ).slider({
@@ -145,6 +146,11 @@
 	      drop: function( event, ui ) {
 	        $( this ).find( ".placeholder" ).remove();
 	        $( "<li></li>" ).text( ui.draggable.text() ).appendTo( this );
+	        addToURL += ui.draggable.text() + "&";
+	        window.history.pushState({"html":"something.html"},"test", addToURL );
+	        var res = addToURL.split("&");
+	        console.log(res);
+	        //window.location.search += ui.draggable.text()+"&"; //append item name to URL
 	      }
 	    }).sortable({
 	      items: "li:not(.placeholder)",
