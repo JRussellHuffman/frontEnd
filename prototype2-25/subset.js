@@ -1,4 +1,4 @@
-[
+var subset = [
     {
         "itemName": "1906 Race Riot",
         "itemSubhead": "Racial Violence Prompts Migration",
