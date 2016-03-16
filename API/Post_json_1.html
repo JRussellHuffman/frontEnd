@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+<title>jQuery Ajax</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Access-Control-Allow-Origin" content="*"/> 
+</head>
+<script src="http://code.jquery.com/jquery-1.4.3.js"></script>
+<script type="text/javascript">
+ 
+//方式一
+//$.getJSON("http://breakingground.omeka.net/api/collections?pretty_print&jsonp=?",function(data){alert(data);});
+ 
+//方式二
+//$.get("http://audicms.ogilvy.com.cn/webapp/front/dealerapi!getdealerlist.action","",function(data){alert(data);}); 
+ 
+ 
+//方式三
+//$.ajax({
+ //  type: "GET",//请求方式
+ //  url: "http://breakingground.omeka.net/api/collections?pretty_print",//地址，就是action请求路径
+ //  data: "JSONP",//数据类型text xml json  script  jsonp
+   //cache:true
+ //  success: function(msg){//返回的参数就是 action里面所有的有get和set方法的参数
+ //      document.getElementById("result").innerHTML=msg;
+  // }
+   /*}).done(function(server_data) {
+    console.log(server_data)
+}).fail(console.log("failed"));*/
+//});
+
+//方式四
+$().ready(function () {
+  var url = 'http://breakingground.omeka.net/api/items?pretty_print&callback=?';
+
+  $.getJSON(url, function (data) {
+    //document.getElementById("result").innerHTML=data.array.length;
+    for(var i=0; i<data.data.length;i++){
+    	//console.log(data.data[i].id);
+    	if(data.data[i].element_texts.length>2)
+    	document.getElementById("result").innerHTML=data.data[i].element_texts[2].text;
+         //console.log(data.data[i].element_texts[2].text);
+         //console.log(data.data[i].element_texts.length);
+         //console.log(data.data[i].element_texts[2].text);
+    }
+  });
+});
+
+ 
+</script>
+ 
+<body>
+ 
+<div id="result" style="background:orange;border:1px solid red;width:300px;height:200px;"></div>
+<form id="formtest" action="" method="GET">
+<span id="result"></span>
+</form>
+ 
+ 
+ 
+</body>
+</html>
