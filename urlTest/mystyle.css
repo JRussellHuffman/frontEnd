@@ -1,0 +1,25 @@
+
+
+p {
+padding: 5px 15px;
+margin: 0px;
+background-color: #d0e4fe;
+   border:1px solid black;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    margin-right: 150px;
+    margin-left: 80px;
+}
+
+h2{
+	  color: black;
+    text-align: center;
+        font-size: 300%;
+margin-bottom: 1px;
+}
+
+h1{
+	  color: purple;
+    text-align: center;
+    font-size: 200%;
+}

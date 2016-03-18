@@ -1,0 +1,44 @@
+#left {
+position: absolute;
+left: 2%;
+width: 19%;
+top: 106px;
+background-color: #ffffff;
+}
+
+#middleleft {
+position: absolute;
+left: 22%;
+width: 28%;
+top: 106px;
+background-color: #ffffff;
+}
+
+#middleright {
+position: absolute;
+left: 51%;
+width: 28%;
+top: 106px;
+background-color: #ffffff;
+}
+
+#right,#middleright,#middleleft,#left{
+border: 1px solid #564b47;
+padding:0px;
+margin:0px;
+}
+
+p,h1, h3, pre {
+padding: 5px 15px;
+margin: 0px;
+}
+
+#right {
+position: absolute;
+left: 80%;
+width: 18%;
+top: 106px;
+background-color: #ffffff;
+}
+
+/*source: http://www.mycelly.com/css_templates/css_template_04.htm;*/

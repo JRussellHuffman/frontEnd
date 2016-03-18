@@ -2,45 +2,231 @@
 <html>
 <head>
 	<title>learning!</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script type="text/javascript" src="subsetA.js"></script>
+	<link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 <body>
 	learning is fun
 
 	<form>
-		<input type="text" name="first" id="user_input">
+	 	<input type="text" name="first" id="user_input">
 		<input type="text" name="second">
 		<input type="text" name="third">
-		<input type="submit" value="Submit" onclick="showInput()">
-	</form>
+		<input type="submit" value="Submit" >
 
-	<div class="result">
+	<h2 id="titleResult1"><h2>
+	<h1 id="dateResult1"></h1>
+	<p id="arrayResult1"></p>
 
-	</div>
+	<h2 id="titleResult2"><h2>
+	<h1 id="dateResult2"></h1>
+	<p id="arrayResult2"></p>
 
+	<h2 id="titleResult3"><h2>
+	<h1 id="dateResult3"></h1>
+	<p id="arrayResult3"></p>
 
 	<script type="text/javascript">
 
-		// function checkHash() {
-		// 	if(window.location.hash) {
-		// 	  var withHash = window.location.hash;
-		// 	  contentHash = withHash.slice( 1 );
-		// 	  console.log(contentHash)
-		// 	} else {
-		// 	  console.log("no hash");
-		// 	}
-		// }
+
+		var returnArray = []
+		var titleArray = []
+		var dateArray = []
 
 		function getURL() {
-			var query = window.location.search.slice(1);
-			var queryTest= query.substr(0, query.indexOf('&')); 
-			$("div.result").html(queryTest);
-			console.log(queryTest)
+			var query = window.location.search.replace("?", "");
+			var queryTest= parse(query);
+
+			$("div.result1").html(JSON.stringify(parse(queryTest)));
+			console.log(" query test ");
+			console.log(queryTest);
+			console.log("get the id ");
+
+
+			window.onload = getTheID(queryTest);
+			console.log(queryTest);
+			//console.log(queryTest.getObjects);
+			//var items = parse(queryTest).id;
+
+			// var getFirstThing = queryTest[Object.keys(queryTest)[0]];
+			// var getSecondThing = queryTest[Object.keys(queryTest)[1]];
+			// var getThirdThing = queryTest[Object.keys(queryTest)[2]];
+
+
+		
+				//console.log("Testing" + subsetA[i])
+				//returnArray[i] = subsetA[i]
+	
+			// console.log(getFirstThing);
+			// console.log(getSecondThing);
+			// console.log(getThirdThing);
+			
+			// getTheID(getFirstThing); 
+			// getTheID(getSecondThing); 
+			// getTheID(getThirdThing);
+
+			// var arrayOfDescriptions = getTheID(getThirdThing);
+			// console.log((returnArray[1]).toString());
+
+			// $("div.result1").html((returnArray[0]).toString());
+			// $("div.result1").html((returnArray[1]).toString());
+			// $("div.result1").html((returnArray[2]).toString());
+			//$("div.result1").html((returnArray[3]).toString());
+
+
+			
+
+			//document.getElementById("arrayResult1").innerHTML = returnArray[0];
+
+			//var items = parse(queryTest).id;
+			//console.log(queryTest[Object.keys(QueryTest)[0]]);
+
+			//console.log(getTheID((parse(queryTest))[0]));
+			//console.log((parse(queryTest)));
+
+		
+
+			//$("div.result2").html(getObjects(myJsonTest, 'date', '1910'));
+			//console.log(obj.itemDescription);
+			//console.log(getObjects(myJsonTest, 'date', '1910'));
+
+
+
 		}
 
+		function parse(val) {
+		
+    var str = window.location.search;
+    var objURL = {};
+
+    str.replace(
+        new RegExp( "([^?=&]+)(=([^&]*))?", "g" ),
+        function( $0, $1, $2, $3 ){
+            objURL[ $1 ] = $3;
+        }
+    );
+    return objURL;
+			}
+
+
+    function getTheID(myArray) {
+    	//console.log(subsetA[0].id);
+
+    	//first, I'm going to get the 'length' of the object
+		var key, count = 0;
+		for(key in myArray) {
+		  if(myArray.hasOwnProperty(key)) {
+		    count++;
+		   
+		  }
+		}
+		 console.log("length of myArray = " + count)
+
+	//now I want the length of the subset
+		var countTwo = 0;
+		for(key in subsetA) {
+		  if(subsetA.hasOwnProperty(key)) {
+		    countTwo++;
+		  
+		  }
+		}
+		  console.log("length of subsetA = " + countTwo)
+
+
+    	
+    	//go through all the items in the object
+    	for(var j = 0; j < count; j++){
+    		//get out the key value (id) of this item in the object 
+    		var myID = myArray[Object.keys(myArray)[j]]
+    		
+    		//var myID = myArray[j];
+			for (var i = 0; i < countTwo; i++) {
+			
+				if (subsetA[i].id == myID) {
+					console.log("Found an id: " + subsetA[i].id)
+					//this is an array of all the item descriptions from the ids given:
+					returnArray.push(subsetA[i].itemDescription)
+					dateArray.push(subsetA[i].date)
+					titleArray.push(subsetA[i].itemName)
+					//console.log("current return array location: "+ i)
+				}
+			
+			};
+	};
+			console.log(returnArray);
+				console.log(dateArray);
+					console.log(titleArray);
+			return returnArray;
+
+			
+	
+}
+	
+	function showTheDescriptions(thisID){
+	//	$("div.result2").html(returnArray[0]);
+	//	$("div.result3").html(returnArray[1]);
+	
+	//document.getElementById("arrayResult2").innerHTML = returnArray[1];
+	}
+
+
+/*
+	function getObjects(obj, key, val) {
+    var objects = [];
+    for (var i in obj) {
+        if (!obj.hasOwnProperty(i)) continue;
+        if (typeof obj[i] == 'object') {
+            objects = objects.concat(getObjects(obj[i], key, val));
+        } else if (i == key && obj[key] == val) {
+            objects.push(obj);
+            console.log(obj.itemDescription);
+        }
+    }
+    return objects;
+}
+*/
+
+	// function searchDate(divName, tag, item, e) { //(obj, key, val)
+	// 	for (var i = 0; i < val.key.length; i++) {
+	// 		if (item.key == key) {
+	// 			$(obj).append(addEntry(val));
+	// 		}
+	// 	};
+	// }
+
+
+
+
+		//window.onload = getTheID;
 		getURL();
 
+
+
+	
+	document.getElementById("arrayResult1").innerHTML = returnArray[0];
+	document.getElementById("arrayResult2").innerHTML = returnArray[1];
+	document.getElementById("arrayResult3").innerHTML = returnArray[2];
+
+	document.getElementById("titleResult1").innerHTML = titleArray[0];
+	document.getElementById("titleResult2").innerHTML = titleArray[1];
+	document.getElementById("titleResult3").innerHTML = titleArray[2];
+
+	document.getElementById("dateResult1").innerHTML = dateArray[0];
+	document.getElementById("dateResult2").innerHTML = dateArray[1];
+	document.getElementById("dateResult3").innerHTML = dateArray[2];
+
 	</script>
+
+	</form>
+
+	<div class="result1">
+	<div class="result2">
+	<div class="result3">
+
+	
+	</div>
 
 
 </body>
