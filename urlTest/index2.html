@@ -44,59 +44,15 @@
 			console.log(queryTest);
 			console.log("get the id ");
 
-
+			//window.onload has to be called, otherwise the html won't load before the script
 			window.onload = getTheID(queryTest);
 			console.log(queryTest);
-			//console.log(queryTest.getObjects);
-			//var items = parse(queryTest).id;
-
-			// var getFirstThing = queryTest[Object.keys(queryTest)[0]];
-			// var getSecondThing = queryTest[Object.keys(queryTest)[1]];
-			// var getThirdThing = queryTest[Object.keys(queryTest)[2]];
-
-
 		
-				//console.log("Testing" + subsetA[i])
-				//returnArray[i] = subsetA[i]
-	
-			// console.log(getFirstThing);
-			// console.log(getSecondThing);
-			// console.log(getThirdThing);
-			
-			// getTheID(getFirstThing); 
-			// getTheID(getSecondThing); 
-			// getTheID(getThirdThing);
-
-			// var arrayOfDescriptions = getTheID(getThirdThing);
-			// console.log((returnArray[1]).toString());
-
-			// $("div.result1").html((returnArray[0]).toString());
-			// $("div.result1").html((returnArray[1]).toString());
-			// $("div.result1").html((returnArray[2]).toString());
-			//$("div.result1").html((returnArray[3]).toString());
-
-
-			
-
-			//document.getElementById("arrayResult1").innerHTML = returnArray[0];
-
-			//var items = parse(queryTest).id;
-			//console.log(queryTest[Object.keys(QueryTest)[0]]);
-
-			//console.log(getTheID((parse(queryTest))[0]));
-			//console.log((parse(queryTest)));
-
-		
-
-			//$("div.result2").html(getObjects(myJsonTest, 'date', '1910'));
-			//console.log(obj.itemDescription);
-			//console.log(getObjects(myJsonTest, 'date', '1910'));
-
 
 
 		}
 
-		function parse(val) {
+	function parse(val) {
 		
     var str = window.location.search;
     var objURL = {};
@@ -134,14 +90,11 @@
 		}
 		  console.log("length of subsetA = " + countTwo)
 
-
-    	
     	//go through all the items in the object
     	for(var j = 0; j < count; j++){
     		//get out the key value (id) of this item in the object 
     		var myID = myArray[Object.keys(myArray)[j]]
     		
-    		//var myID = myArray[j];
 			for (var i = 0; i < countTwo; i++) {
 			
 				if (subsetA[i].id == myID) {
@@ -150,60 +103,21 @@
 					returnArray.push(subsetA[i].itemDescription)
 					dateArray.push(subsetA[i].date)
 					titleArray.push(subsetA[i].itemName)
-					//console.log("current return array location: "+ i)
+					
 				}
 			
 			};
 	};
 			console.log(returnArray);
-				console.log(dateArray);
-					console.log(titleArray);
-			return returnArray;
-
-			
-	
-}
-	
-	function showTheDescriptions(thisID){
-	//	$("div.result2").html(returnArray[0]);
-	//	$("div.result3").html(returnArray[1]);
-	
-	//document.getElementById("arrayResult2").innerHTML = returnArray[1];
+			console.log(dateArray);
+			console.log(titleArray);
+			return returnArray;	
 	}
-
-
-/*
-	function getObjects(obj, key, val) {
-    var objects = [];
-    for (var i in obj) {
-        if (!obj.hasOwnProperty(i)) continue;
-        if (typeof obj[i] == 'object') {
-            objects = objects.concat(getObjects(obj[i], key, val));
-        } else if (i == key && obj[key] == val) {
-            objects.push(obj);
-            console.log(obj.itemDescription);
-        }
-    }
-    return objects;
-}
-*/
-
-	// function searchDate(divName, tag, item, e) { //(obj, key, val)
-	// 	for (var i = 0; i < val.key.length; i++) {
-	// 		if (item.key == key) {
-	// 			$(obj).append(addEntry(val));
-	// 		}
-	// 	};
-	// }
-
-
-
-
-		//window.onload = getTheID;
+	
 		getURL();
 
 
-
+//below, these lines populate the document's items with the appropriate info
 	
 	document.getElementById("arrayResult1").innerHTML = returnArray[0];
 	document.getElementById("arrayResult2").innerHTML = returnArray[1];
