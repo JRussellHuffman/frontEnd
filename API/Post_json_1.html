@@ -37,7 +37,9 @@ $().ready(function () {
   $.getJSON(url, function (data) {
     //document.getElementById("result").innerHTML=data.array.length;
     for(var i=0; i<data.data.length;i++){
-    	//console.log(data.data[i].id);
+    	console.log(data.data[i].element_texts[0].text);
+      console.log(data.data[i].element_texts[1].text);
+      //console.log(data.data[i].element_texts[2].text);
     	if(data.data[i].element_texts.length>2)
     	document.getElementById("result").innerHTML=data.data[i].element_texts[2].text;
          //console.log(data.data[i].element_texts[2].text);
