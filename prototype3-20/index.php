@@ -121,7 +121,7 @@
 	?>
 
 	<script>
-	var addToURL = "results.html?";
+	var addToURL = "results.php?";
 	var queueList = []
 		//slider
 		$(function() {
@@ -157,7 +157,7 @@
 	        //window.history.pushState({"html":"something.html"},"test", addToURL );
 	        var res = addToURL.split("&");
 	        //console.log(res);
-	        queueList = res;
+	        queueList = addToURL;
 	        //window.location.search += ui.draggable.text()+"&"; //append item name to URL
 	      }
 	    }).sortable({
@@ -173,6 +173,7 @@
 	//submit button
 	function submitQueue() {
 		console.log(queueList)
+		window.location.href = queueList;
 	}
   	</script>
 

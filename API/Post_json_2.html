@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+<title>jQuery Ajax</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Access-Control-Allow-Origin" content="*"/> 
+</head>
+<style type="text/css">
+  body {
+    font-family: helvetica, arial, sans-serif;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+</style>
+<!-- <script src="http://code.jquery.com/jquery-1.4.3.js"></script> -->
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+
+var jsonArchive = []
+$().ready(function () {
+  var url = 'http://archive.ourcommunity.is/api/items?pretty_print&callback=?';
+
+  $.getJSON(url, function (archive) {
+
+    //getMedia(archive, 199)
+
+    jsonArchive = archive;
+    console.log(archive.data.length)
+    $("div.results").empty();
+    for (var i = 0; i < archive.data.length; i++) {
+      assignData(archive, i);
+      // if (archive.data[i].files.count > 0) {
+      //   getMedia(archive, i)
+      // }
+    };
+  });
+});
+
+//var tags = jsonArchive.data[1].tags.name;
+
+function assignData(db, index) {
+  var itemName = "no data returned";
+  var itemSubhead = "no data returned for subhead";
+  var itemDate = "no data returned for date";
+  var itemText = "no data returned for text";
+  var itemTags = getTags(db, index);
+  var itemId = db.data[index].id;
+  var itemMedia = "no media"
+
+  if (db.data[index].element_texts[0] != undefined) {
+    itemName = db.data[index].element_texts[0].text;
+  }
+  if (db.data[index].element_texts[1] != undefined) {
+    itemSubhead = db.data[index].element_texts[1].text;
+  }
+  if (db.data[index].element_texts[4] != undefined) {
+    itemDate = db.data[index].element_texts[4].text;
+  }
+  if (db.data[index].element_texts[6] != undefined) {
+    itemText = db.data[index].element_texts[6].text;
+  }
+
+  var entireItem = [itemName, itemSubhead, itemDate, itemText, itemTags, itemId]
+
+  if (db.data[index].files.count > 0) {
+    getMedia(db, index, entireItem);
+  } else {
+    addToPage(itemName, itemSubhead, itemDate, itemMedia, itemText, itemTags, itemId)
+  }
+
+}
+
+function getMedia(db, index, item) {
+  var url = db.data[index].files.url
+  console.log(url)
+
+  $.getJSON(url + "&callback=?", function (object) {
+
+    var filePath = object.data[0].file_urls.original;
+    console.log(filePath)
+
+    var extension = filePath.substr(filePath.length - 3);
+
+    var embed = "no media";
+    if (extension == "mp3"){
+      embed = '<audio controls><source src="' + filePath + '" type="audio/mpeg"></audio>'
+    } else if (extension == "jpg") {
+      embed = '<img src="' + filePath + '">'
+    } else if (extension == "pdf") {
+      embed = '<iframe src="' + filePath + '" style="width:718px; height:700px;"></iframe>'
+    }
+
+    addToPage(item[0], item[1], item[2], embed, item[3], item[4], item[5]) //must be called after the media is loaded, which is done through AJAX
+
+  });
+
+}
+
+function addToPage(a,b,c,d,e,f,g) {
+  var forPage = '<h1 class="item">' + a + '</h1><h3 class="item">' + b + '</h3><h3 class="item">' + c + '</h3>' + d + '<p class="item">' + e + '</p><h3 class="items">' + f + '</h3><h3 class="item">' + g + '</h3><hr>'
+  $("div.results").append(forPage)
+}
+
+function getTags (db, index) {
+  var tags = []
+  var tagObject = db.data[index].tags;
+  //console.log(tagObject[1].name)
+  for (var i = 0; i < tagObject.length; i++) {
+    var tag = tagObject[i].name;
+    tags.push(tag);
+  };
+  return tags
+}
+
+ 
+</script>
+ 
+<body>
+
+<div class="media"></div>
+
+ 
+<div class="results">
+  <h1>loading results...</h1>
+
+  <!-- <h1 class="item">no results</h1>
+  <h3 class="item">no results</h3>
+  <h3 class="item">no results</h3>
+  <p class="item">nothin here neither</p>
+  <h3 class="items">no tags to be had</h3>
+  <h3 class="item">no ID</h3> -->
+
+</div> 
+ 
+</body>
+</html>

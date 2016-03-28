@@ -109,7 +109,7 @@ function makedataBase (data) {
 	}
 
 	function addTitle(item, e) {
-		return '<div class="item ui-draggable ui-draggable-handle">' + item.name[e] + ' ...</div>'
+		return '<div class="item ui-draggable ui-draggable-handle">' + item.name[e] + '</div>'
 	}
 
 	this.searchbyDate = function (divName, startDate, endDate) {

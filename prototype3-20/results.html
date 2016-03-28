@@ -10,10 +10,15 @@
 var query = window.location.search.slice(1);
 var res = query.split("&");
 for (var i = 0; i < res.length; i++) {
-	$("div.results").append(res[i] + "<br>");
+	var results =  parseSpecial(res[i]);
+	$("div.results").append(results + "<br>");
 };
 console.log(res);
 
+function parseSpecial(string) {
+	var str01 =  string.replace(/%20/g, " ").replace(/%92/g, "'")
+	return str01;
+}
 
 </script>
 </body>
