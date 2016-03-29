@@ -1,0 +1,154 @@
+<html>
+<head>
+	<title>learning php is fun!</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="libraries/jquery.js"></script> -->
+
+	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"> -->
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+	<script>
+	var addToURL = "results.html?";
+	var queueList = []
+		//slider
+		// $(function() {
+		//     $( "#slider-range" ).slider({
+		//       range: true,
+		//       min: 1900,
+		//       max: 2016,
+		//       values: [ 1950, 1960 ],
+		//       slide: function( event, ui ) {
+		//         $( "#amount" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+		//         //call the database search by date function, will update in real time
+		//         database.searchbyDate(".content", ui.values[ 0 ], ui.values[ 1 ])
+		//       }
+		//     });
+		//     $( "#amount" ).val($( "#slider-range" ).slider( "values", 0 ) +
+		//       " - " + $( "#slider-range" ).slider( "values", 1 ) );
+		// });
+		// //drag and drop
+		// $(function() {
+	 //    //$( "#catalog" ).accordion();
+	 //    $( "div.item" ).draggable({
+	 //      appendTo: "body",
+	 //      helper: "clone"
+	 //    });
+	 //    $( "#cart ol" ).droppable({
+	 //      activeClass: "ui-state-default",
+	 //      hoverClass: "ui-state-hover",
+	 //      accept: ":not(.ui-sortable-helper)",
+	 //      drop: function( event, ui ) {
+	 //        $( this ).find( ".placeholder" ).remove();
+	 //        $( "<li></li>" ).text( ui.draggable.text() ).appendTo( this );
+	 //        addToURL += ui.draggable.text() + "&";
+	 //        //window.history.pushState({"html":"something.html"},"test", addToURL );
+	 //        var res = addToURL.split("&");
+	 //        //console.log(res);
+	 //        queueList = addToURL;
+	 //        //window.location.search += ui.draggable.text()+"&"; //append item name to URL
+	 //      }
+	 //    }).sortable({
+	 //      items: "li:not(.placeholder)",
+	 //      sort: function() {
+	 //        // gets added unintentionally by droppable interacting with sortable
+	 //        // using connectWithSortable fixes this, but doesn't allow you to customize active/hoverClass options
+	 //        $( this ).removeClass( "ui-state-default" );
+	 //      }
+	 //    });
+	 //  });
+
+	//submit button
+	function submitQueue() {
+		console.log(queueList)
+		window.location.href = queueList;
+	}
+
+
+  	</script>
+
+  	<div class="queue">
+  		<!-- dynamically add drag n' drop thumbs here -->
+  	</div>
+
+	<div class="filters">
+		<div class="halfWidth">
+			<h1>Tag Filter:</h1>
+			<button onclick='database.appendAllTo(".content")'>View All</button>
+			<button onclick='database.appendAllByTag(".content", "racism")'>Racism</button>
+			<button onclick='database.appendAllByTag(".content", "activism")'>Activism</button>
+			<button onclick='database.appendAllByTag(".content", "housing")'>Housing</button>
+			<button onclick='database.appendAllByTag(".content", "development")'>Development</button>
+			<button onclick='database.appendAllByTag(".content", "dome")'>Dome</button>
+		</div>
+		<div class="halfWidth">
+			<h1>Date Filter:</h1>
+			<p>
+			  	<label for="amount">Year range:</label>
+			  	<input type="text" id="amount" readonly style="border:0; color:#000; font-weight:bold;">
+			</p>
+			<div id="slider-range" style="margin-bottom:20px;"></div>
+		</div>
+	</div>
+
+	<div class="addPerson"><h1> add an item </h1>
+		<form action="create.php" method="post">
+
+			Name: <input type="text" name="inputName" value=""><br><br>
+			Subhead: <input type="text" name="inputSubhead" value=""><br><br>
+			Description: <input type="text" name="inputDesc" value=""><br><br>
+			Media Type: <input type="text" name="inputMedia" value=""><br><br>
+			Date: <input type="text" name="inputDate" value=""><br><br>
+			Tags: <br>
+			<input type="checkbox" name="tag01" value="racism" > Racism<br>
+			<input type="checkbox" name="tag02" value="activism" > Activism<br>
+			<input type="checkbox" name="tag03" value="development" > Development<br>
+			<input type="checkbox" name="tag04" value="housing" > Housing<br>
+			<input type="checkbox" name="tag05" value="dome" > Dome<br>
+			<br>
+			<input type="submit" name="submit">
+
+		</form>
+	</div>
+	<div class="content">
+
+	</div>
+	<div id="cart">
+	  	<!-- <h1 class="ui-widget-header">Shopping Cart</h1> -->
+	  	<button class="submit-button" onclick="submitQueue()">Submit</button>
+	  	<div class="ui-widget-content">
+	    	<ol>
+	      		<li class="placeholder">Add your items here</li>
+	    	</ol>
+	  	</div>
+	</div>
+	<div class="bottom-padding"></div>
+
+	<script type="text/javascript">
+		function addtoQueue() {
+			$("div.item").click(function(){
+				var selection = $(this).html()
+				$("ol").append('<li>' + selection + '</li>');
+				addToURL += selection + "&";
+				console.log(addToURL)
+	        	//window.history.pushState({"html":"something.html"},"test", addToURL );
+	        	var res = addToURL.split("&");
+	        	queueList = addToURL;
+			})
+		}
+	</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+
+	<script type="text/javascript">console.log("here now!")</script>
+
+	<script type="text/javascript" src="json.js"></script>
+	 
+
+</body>
+</html>

@@ -33,14 +33,9 @@ $().ready(function () {
     $("div.results").empty();
     for (var i = 0; i < archive.data.length; i++) {
       assignData(archive, i);
-      // if (archive.data[i].files.count > 0) {
-      //   getMedia(archive, i)
-      // }
     };
   });
 });
-
-//var tags = jsonArchive.data[1].tags.name;
 
 function assignData(db, index) {
   var itemName = "no data returned";
@@ -108,7 +103,6 @@ function addToPage(a,b,c,d,e,f,g) {
 function getTags (db, index) {
   var tags = []
   var tagObject = db.data[index].tags;
-  //console.log(tagObject[1].name)
   for (var i = 0; i < tagObject.length; i++) {
     var tag = tagObject[i].name;
     tags.push(tag);
@@ -126,13 +120,6 @@ function getTags (db, index) {
  
 <div class="results">
   <h1>loading results...</h1>
-
-  <!-- <h1 class="item">no results</h1>
-  <h3 class="item">no results</h3>
-  <h3 class="item">no results</h3>
-  <p class="item">nothin here neither</p>
-  <h3 class="items">no tags to be had</h3>
-  <h3 class="item">no ID</h3> -->
 
 </div> 
  
