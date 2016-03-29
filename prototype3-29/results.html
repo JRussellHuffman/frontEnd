@@ -16,16 +16,14 @@
 
 	<div class="results"></div>
 	<div class="fotorama-container">
-		<div class="fotorama" data-width="100%" data-height="100%" data-loop="true" data-nav="false" data-autoplay="false" data-stopautoplayontouch="true" data-max-width="100%" data-arrows="true" data-nav="dots">
+		<div class="fotorama" data-width="100%" data-height="100%" data-loop="false" data-nav="false" data-autoplay="false" data-stopautoplayontouch="true" data-max-width="100%" data-arrows="true" data-nav="dots">
 			<!--content goes here -->
-			<h1>loading slideshow</h1>
+			<h1>loading presentation...</h1>
 		</div>
 	</div>
 
 	<script type="text/javascript">
 
-	var database = new Object(); // trying to call the empty object doesnt work
-	// put callback (or entire script from json.js) inside this document.
 
 		var query = window.location.search.slice(1);
 		var contentArray = []
@@ -33,16 +31,12 @@
 			var res = query.split("&");
 
 			for (var i = 0; i < res.length; i++) {
-				console.log("here")
 				var results =  parseSpecial(res[i]);
-				console.log(results)
 				var append = grabObject(results)
-				//console.log(append)
 				contentArray.push({html: append})
 			};
 
 			console.log(res);
-			console.log(contentArray)
 			fotorama.load(contentArray);
 		}
 
@@ -51,8 +45,8 @@
 			return parsed;
 		}
 
-		function grabObject(name){ //this cant see the database yet
-			console.log(database.id)
+		function grabObject(name){
+			//console.log(database.id)
 			for (var i = 0; i < database.name.length; i++) {
 				if (name == database.id[i]) {
 					var name = database.name[i];
@@ -90,6 +84,5 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 	<script type="text/javascript" src="json.js"></script>
-	<script type="text/javascript">console.log("here!")</script>
 </body>
 </html>

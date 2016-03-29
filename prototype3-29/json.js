@@ -22,14 +22,50 @@ $().ready(function () {
       loadContent(); //this is specific to results
     }
 
-    if (typeof addtoQueue == 'function') { 
-      addtoQueue(); //this is specific to index
+    if (typeof addtoQueue == 'function') { //this is specific to index
+      $("div.item").click(function(){
+        var selection = $(this).html()
+        addtoQueue(selection);
+      })
     }
 
-    var jQuery_1_4_3 = $.noConflict(true);
+    getAllTags();
+
+    //var jQuery_1_4_3 = $.noConflict(true);
 
   });
 });
+
+var uniqueTags = []
+
+function getAllTags() {
+  var allTags = [];
+  for (var i = 0; i < database.tags.length; i++) {
+    for (var j = 0; j < database.tags[i].length; j++) {
+      getUniqueTags(database.tags[i][j])
+    };
+  };
+  makeTagDropdown(uniqueTags);
+}
+
+function getUniqueTags(tag) {
+  var contains = false;
+  for (var i = 0; i < uniqueTags.length; i++) {
+    if (tag == uniqueTags[i]) {
+      contains = true;
+    }
+  };
+  if (contains == false) {
+    uniqueTags.push(tag);
+  }
+}
+
+function makeTagDropdown (tagArray) {
+  for (var i = 0; i < tagArray.length; i++) {
+    var markup = '<option value="'+ tagArray[i] +'">'+ tagArray[i] +'</option>'
+    $("select.tags").append(markup);
+  };
+}
 
 function assignData(db, index) {
   var itemName = "no data returned";
@@ -128,12 +164,18 @@ function makedataBase (data) {
   }
 
   function addEntry (item, e) {
+    var tags;
+    if (item.tags[e].length > 0) {
+      tags = item.tags[e]
+    } else {
+      tags = "general"
+    }
     return '<div class="wrapper">' +
     "<h2>" + item.name[e] + "</h2>" + 
     "<h3>" + item.subhead[e] + "</h3>" +
     "<p>" + item.description[e] + "</p>" +
     "<span> date: " + item.date[e] + "</span> <br>" +
-    "<span> tags: " + item.tags[e] + "</span>" +
+    "<span> tags: " + tags + ', general</span><br><button class="add-button" onClick="addtoQueue(' + item.id[e] + ')"> add to queue </button>' +
     "</div>";
   }
 
@@ -168,7 +210,8 @@ function makedataBase (data) {
     };
   }
 
-  function loopthroughTags(divName, tag, item, e) {
+  function loopthroughTags(divName, tag, item, e) { //am I using this? old?
+    var allTags = [];
     for (var i = 0; i < item.tags[e].length; i++) {
       if (item.tags[e][i] == tag) {
         $(divName).append(addEntry(item,e));
