@@ -23,10 +23,10 @@ $().ready(function () {
     }
 
     if (typeof addtoQueue == 'function') { //this is specific to index
-      $("div.item").click(function(){
-        var selection = $(this).html()
-        addtoQueue(selection);
-      })
+      // $("div.item").click(function(){
+      //   var selection = $(this).html()
+      //   addtoQueue(selection);
+      // })
     }
 
     getAllTags();
@@ -233,5 +233,3 @@ function makedataBase (data) {
   }
 
 }
-
-//construct objects
