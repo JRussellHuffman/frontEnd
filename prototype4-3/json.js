@@ -165,6 +165,7 @@ function makedataBase (data) {
 
   function addEntry (item, e) {
     var tags;
+    //console.log(item)
     if (item.tags[e].length > 0) {
       tags = item.tags[e]
     } else {
@@ -177,16 +178,18 @@ function makedataBase (data) {
     "<span> date: " + item.date[e] + "</span> <br>" +
     "<span> tags: " + tags + ', general</span><br><button class="add-button" onClick="addtoQueue(' + item.id[e] + ')"> add to queue </button>' +
     "</div>";
+
   }
 
   function addTitle(item, e) { //to the thumbnails
-    return '<div class="item ui-draggable ui-draggable-handle">' + item.name[e] + '</div>'
+    return '<div class="item ui-draggable ui-draggable-handle" item-id="' + item.id[e] + '">' + item.name[e] + '</div>'
   }
 
   this.searchbyDate = function (divName, startDate, endDate) {
     $(divName).empty();
     $("div.queue").empty();
     var datesFound = false;
+    console.log(data.length)
     for (var i = 0; i < data.length; i++) {
 
       var d = fixedYear(this.date[i])
@@ -199,6 +202,7 @@ function makedataBase (data) {
     if (!datesFound) {
       $(divName).append("search returned no results");
     }
+    clickQueueItem();
   }
 
   this.appendAllTo = function (divName) {
@@ -206,8 +210,26 @@ function makedataBase (data) {
     $("div.queue").empty();
     for (var i = 0; i < data.length; i++) {
       $(divName).append(addEntry(this,i));
+      console.log("no issues here")
       $("div.queue").append(addTitle(this,i));
     };
+    clickQueueItem();
+  }
+
+  this.appendThisTo = function (divName, e) {
+    $("div." + divName).empty();
+    for (var i = 0; i < database.data.length; i++) {
+      if (database.data[i].id == e) {
+        $("div." + divName).append(addEntry(this,i));
+      }
+    };
+  }
+
+  function clickQueueItem (item) {
+    $("div.item").click(function(){
+      var itemID = $(this).attr("item-id");
+      database.appendThisTo("active", itemID);
+    })
   }
 
   function loopthroughTags(divName, tag, item, e) { //am I using this? old?
@@ -230,6 +252,7 @@ function makedataBase (data) {
         }
       };
     };
+    clickQueueItem();
   }
 
 }

@@ -1,0 +1,121 @@
+body {
+	margin: 0;
+	font-family: helvetica, arial, sans-serif;
+}
+
+div.halfWidth {
+    width: 45%;
+    /* border: 1px solid black; */
+    float: left;
+    height: 150px;
+    margin: 1%;
+}
+
+
+
+div.addPerson {
+	position: relative;
+	float: right;
+	border: 1px solid black;
+	padding:20px;
+}
+
+div.content {
+	position: relative;
+	float: left;
+	border: 1px solid black;
+	padding:10px;
+	width: 65%;
+}
+
+div.wrapper {
+	background:#e6e6e6;
+	padding:20px;
+	margin:10px;
+}
+
+div.filters {
+	overflow: auto;
+	border-bottom: 1px solid black;
+	margin-bottom: 20px;
+}
+div.queue {
+	position: relative;
+	width: 300px;
+	height: 90%;
+	border-right: 1px solid black;
+	box-sizing: border-box;
+	float:left;
+	overflow: scroll;
+}
+
+div.item {
+    padding:10px;
+    background: #e6e6e6;
+    margin:10px;
+    text-align: center;
+    list-style: none;
+    cursor: all-scroll;
+    z-index: 2;
+}
+
+#cart { 
+    width: 200px; 
+    float: left; 
+    margin-top: 1em; 
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    height: 75px;
+}
+
+.ui-widget-content {
+	height: 75px;
+}
+
+#cart ol {
+    margin: 0;
+    /*padding: 1em 0 1em 3em;*/
+    overflow: auto;
+}
+
+ol {
+	-webkit-margin-before: 0;
+	-webkit-padding-start: 0;
+}
+
+li {
+    background: #e6e6e6;
+    padding:10px;
+    margin:20px;
+    list-style: none;
+    float:left;
+    cursor: all-scroll;
+}
+
+div.bottom-padding {
+	position: relative;
+	width: 100%;
+	height: 150px;
+	float: left;
+}
+
+button.submit-button {
+	position: absolute;
+	right:10px;
+	top:30px;
+}
+
+button.add-button {
+	margin-top: 20px;
+}
+
+div.active {
+	position: relative;
+	float: left;
+	border: 1px solid black;
+	padding:10px;
+	width: 65%;
+	height: 500px;
+}

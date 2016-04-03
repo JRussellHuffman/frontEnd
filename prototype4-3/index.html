@@ -34,11 +34,6 @@
 		<div class="halfWidth">
 			<h1>Tag Filter:</h1>
 			<button onclick='database.appendAllTo(".content")'>View All</button>
-			<!-- <button onclick='database.appendAllByTag(".content", "Economic impact")'>Economic impact</button>
-			<button onclick='database.appendAllByTag(".content", "activism")'>Activism</button>
-			<button onclick='database.appendAllByTag(".content", "housing")'>Housing</button>
-			<button onclick='database.appendAllByTag(".content", "development")'>Development</button>
-			<button onclick='database.appendAllByTag(".content", "dome")'>Dome</button> -->
 
 			<select class="tags" onChange='database.appendAllByTag(".content", this.value)'>
 				<option><value="">general</option>
@@ -53,31 +48,9 @@
 			<div id="slider-range" style="margin-bottom:20px;"></div>
 		</div>
 	</div>
-
-	<!-- <div class="addPerson"><h1> add an item </h1>
-		<form action="create.php" method="post">
-
-			Name: <input type="text" name="inputName" value=""><br><br>
-			Subhead: <input type="text" name="inputSubhead" value=""><br><br>
-			Description: <input type="text" name="inputDesc" value=""><br><br>
-			Media Type: <input type="text" name="inputMedia" value=""><br><br>
-			Date: <input type="text" name="inputDate" value=""><br><br>
-			Tags: <br>
-			<input type="checkbox" name="tag01" value="racism" > Racism<br>
-			<input type="checkbox" name="tag02" value="activism" > Activism<br>
-			<input type="checkbox" name="tag03" value="development" > Development<br>
-			<input type="checkbox" name="tag04" value="housing" > Housing<br>
-			<input type="checkbox" name="tag05" value="dome" > Dome<br>
-			<br>
-			<input type="submit" name="submit">
-
-		</form>
-	</div> -->
-	<div class="content">
-
-	</div>
+	<div class="active"></div>
+	<!-- <div class="content"></div> -->
 	<div id="cart">
-	  	<!-- <h1 class="ui-widget-header">Shopping Cart</h1> -->
 	  	<button class="submit-button" onclick="submitQueue()">Submit</button>
 	  	<div class="ui-widget-content">
 	    	<ol>
@@ -85,7 +58,7 @@
 	    	</ol>
 	  	</div>
 	</div>
-	<div class="bottom-padding"></div>
+	<!-- <div class="bottom-padding"></div> -->
 
 	<script type="text/javascript">
 		function addtoQueue(selectedItem) {
@@ -116,7 +89,6 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 
-	<script type="text/javascript">console.log("here now!")</script>
 
 	<script type="text/javascript" src="json.js"></script>
 	 
