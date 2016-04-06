@@ -225,8 +225,11 @@ function makedataBase (data) {
     };
   }
 
+
   function clickQueueItem (item) {
+    console.log("start this function")
     $("div.item").click(function(){
+      console.log("click this function")
       var itemID = $(this).attr("item-id");
       database.appendThisTo("active", itemID);
     })
@@ -239,6 +242,29 @@ function makedataBase (data) {
         $(divName).append(addEntry(item,e));
       }
     };
+  }
+
+  this.mySearchFunction = function () {
+      var x = document.getElementById("searchForm").value;
+      document.getElementById("demo").innerHTML = x;
+      var count = 0;
+      $("div.queue").empty();
+    
+    for(var i = 0; i < database.data.length; i++){
+      //if(database.data[i].name.toLowerCase() == x.toLowerCase()){
+      var str = database.data[i].name.toLowerCase();
+      var n = str.search(x);
+      if (n > (-1)){  
+        console.log(database.data[i].name);
+        $("div.queue").append(addTitleNew(database.data[i].name,database.data[i].id))
+        //database.Search(".content", ui.values[ 0 ], ui.values[ 1 ]))
+        count++;
+      } 
+    }
+    console.log("End of search for: " + x + ". " + count + " items found.");
+    clickQueueItem(); //this should work!! why not?!?!
+
+       //database.data[]
   }
 
   this.appendAllByTag = function (divName, tag) {
@@ -254,5 +280,10 @@ function makedataBase (data) {
     };
     clickQueueItem();
   }
+
+  function addTitleNew(item, id) { //to the thumbnails
+        return '<div class="item ui-draggable ui-draggable-handle" item-id="' + id + '">' + item + '</div>'
+      }
+
 
 }

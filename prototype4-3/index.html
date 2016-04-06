@@ -6,6 +6,8 @@
 </head>
 <body>
 
+
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<!-- <script type="text/javascript" src="libraries/jquery.js"></script> -->
 
@@ -38,6 +40,25 @@
 			<select class="tags" onChange='database.appendAllByTag(".content", this.value)'>
 				<option><value="">general</option>
 			</select>
+		<!--//******************************************//-->
+		<!--Ashley's code-->
+
+		<form role="form">
+	        <div class="form-group" style='float: left;'>
+	          <input type="text" style="margin-top:20px;" class="form-control input-lg" id="searchForm" placeholder="Search the database">
+	          		<div display='inline-block'>
+				<p style='float: left;' >Searched: &nbsp;</p>
+				<p style='float: left;' id="demo">None</p>
+			</div>
+	        </div>
+
+		</form>
+
+		<button type="submit" style='float: left;' form="searchForm" value="Submit" onclick="database.mySearchFunction()">Search</button>
+
+
+
+		<!--//******************************************//-->
 		</div>
 		<div class="halfWidth">
 			<h1>Date Filter:</h1>
@@ -75,7 +96,8 @@
 		      range: true,
 		      min: 1980,
 		      max: 2016,
-		      values: [ 1990, 2010 ],
+		      // NOTE: Ashley has changed the ending value from 2010 to 2016 for testing purposes !!
+		      values: [ 1990, 2016 ],
 		      slide: function( event, ui ) {
 		        $( "#amount" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
 		        //call the database search by date function, will update in real time
@@ -91,6 +113,34 @@
 
 
 	<script type="text/javascript" src="json.js"></script>
+
+	<script>
+		// function addTitleNew(item, id) { //to the thumbnails
+		//     return '<div class="item ui-draggable ui-draggable-handle" item-id="' + id + '">' + item + '</div>'
+		//   }
+		// 	function mySearchFunction() {
+  //  				var x = document.getElementById("searchForm").value;
+  //  				document.getElementById("demo").innerHTML = x;
+  //  				var count = 0;
+  //  				$("div.queue").empty();
+				
+		// 		for(var i = 0; i < database.data.length; i++){
+		// 			//if(database.data[i].name.toLowerCase() == x.toLowerCase()){
+		// 			var str = database.data[i].name.toLowerCase();
+		// 			var n = str.search(x);
+		// 			if (n > (-1)){	
+		// 				console.log(database.data[i].name);
+		// 				$("div.queue").append(addTitleNew(database.data[i].name,database.data[i].id))
+		// 				//database.Search(".content", ui.values[ 0 ], ui.values[ 1 ]))
+		// 				count++;
+		// 			}	
+		// 		}
+		// 		console.log("End of search for: " + x + ". " + count + " items found.");
+		// 		clickQueueItem(); //this should work!! why not?!?!
+
+  //  				 //database.data[]
+		// 	}
+		</script>
 	 
 
 </body>
