@@ -3,6 +3,10 @@ body {
 	font-family: helvetica, arial, sans-serif;
 }
 
+video {
+	width:100%;
+}
+
 div.halfWidth {
     width: 45%;
     /* border: 1px solid black; */
