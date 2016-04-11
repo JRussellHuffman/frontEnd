@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="js/jquery.omeka-client.js"></script>
+    <script type="text/javascript">
+    function sendForm() {
+        var client = $.omekaClient( $( "#endpoint" ).val() );
+        var key = $( "#key" ).val();
+        var file = $( "#file" )[0].files[0];
+        var data = {
+           public:$( "#item-id" ).val()
+           //id:$( "#item-id" ).val()
+           // collection: $( "#item-id" ).val()
+           // item_type:{
+           //  id: $( "#item-id" ).val(),
+           //  name:$("#content1").val()
+           // }
+          //element_texts: {element_set:{name:$("#content1").val()}}
+
+             
+
+        };
+        var content = {
+            collection:$("#content").val()
+           };
+            
+         
+        var content1 = {
+            element_texts:{
+                text: $("#content1").val()
+            }
+        }
+
+        client.setKey( key );
+        // client.postFile( file, data )
+        //     .done(function( data ) {
+        //         $( "#output" ).text( JSON.stringify( data, null, 2 ) );
+        //     })
+        //     .fail(function( jqXHR ) {
+        //         $( "#output" ).text( jqXHR.responseText );
+        //     });
+
+        
+        
+        client.postFile( file, data )
+            .done(function( data ) {
+                $( "#output" ).text( JSON.stringify( data, null, 2 ) );
+            })
+            .fail(function( jqXHR ) {
+                $( "#output" ).text( jqXHR.responseText );
+            });
+        $("#output").text( JSON.stringify( data, null, 2 ));
+        
+        // client.post(content,content1,data)
+        //      .done(function(data){
+        //         $("#output").text( JSON.stringify( data, null, 2 ));
+        //      })
+        //      .fail(function( jqXHR ) {
+        //         //$( "#output" ).text( jqXHR.responseText );
+        //          $( "#output" ).text( jqXHR.responseText );
+        //     });
+
+    }
+    </script>
+</head>
+<body>
+    <h2>Upload File</h2>
+    <form enctype="multipart/form-data" method="post">
+        <!-- <p><input type="text" id="endpoint" /> Endpoint</p> -->
+        <p><input type="text" id="key" /> Key </p>
+        <p><input type="text" id="item-id" /> Public</p>
+        <p><input type="file" id="file" required /></p>
+        <p><input type="text" id="content"> Content</input></p>
+        <p><input type="text" id="content1"> Content1</input></p>
+        <a href="javascript:sendForm()">Post the file!</a>
+    </form>
+    <pre id="output"></pre>
+</body>
+</html>
