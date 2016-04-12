@@ -3,6 +3,7 @@ body {
 	font-family: Didot, Bodoni MT, serif;
 }
 
+<<<<<<< HEAD
 div.form-group{
     position:relative;
     align-items: left;
@@ -13,6 +14,15 @@ div.form-group{
 div.tagFilter{
    width: 30%;
     position: relative;
+=======
+video {
+	width:100%;
+}
+
+div.halfWidth {
+    width: 45%;
+    /* border: 1px solid black; */
+>>>>>>> master
     float: left;
     height: 150px;
     margin: 2%;

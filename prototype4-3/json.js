@@ -15,8 +15,10 @@ $().ready(function () {
       parsedObjects.push(addItem);
     };
 
+    console.log(parsedObjects)
+
     database = new makedataBase(parsedObjects);
-    database.appendAllTo(".content")
+    database.appendAllTo(".content") //not doing this anymore
 
     if (typeof loadContent == 'function') { 
       loadContent(); //this is specific to results
@@ -69,12 +71,15 @@ function makeTagDropdown (tagArray) {
 
 function assignData(db, index) {
   var itemName = "no data returned";
-  var itemSubhead = "no data returned for subhead";
+  var itemSubhead = "media type"; //subhead is now media type
   var itemDate = "no data returned for date";
   var itemText = "no data returned for text";
   var itemTags = getTags(db, index);
   var itemId = db.data[index].id;
   var itemMedia = "no media"
+
+  //console.log(db.data[index].element_texts[5]) //media duration?
+  //console.log(db.data[index].element_texts[8])
 
   if (db.data[index].element_texts[0] != undefined) {
     itemName = db.data[index].element_texts[0].text;
@@ -89,6 +94,11 @@ function assignData(db, index) {
     itemText = db.data[index].element_texts[6].text;
   }
 
+  if (db.data[index].files.count > 0) {
+    itemMedia = getMedia(db, index, entireItem);
+    console.log(itemMedia)
+  }
+
   var entireItem = [itemName, itemSubhead, itemDate, itemText, itemTags, itemId]
   var itemObject = {
     "name" : itemName,
@@ -97,6 +107,7 @@ function assignData(db, index) {
     "text" : itemText,
     "tags" : itemTags,
     "id" : itemId,
+    "media" : itemMedia,
   }
 
   // if (db.data[index].files.count > 0) {
@@ -106,6 +117,44 @@ function assignData(db, index) {
   // }
 
   return itemObject;
+
+}
+
+function getMedia(db, index, item) {
+  var url = db.data[index].files.url
+  //console.log(url)
+
+  $.getJSON(url + "&callback=?", function (object) { //this is done dynamically, so doesn't load in right away!
+
+    var filePath = object.data[0].file_urls.original;
+    //console.log(filePath)
+
+    var extension = filePath.substr(filePath.length - 3);
+
+    var embed = "no media";
+    if (extension == "mp3"){
+      embed = '<audio controls><source src="' + filePath + '" type="audio/mpeg"></audio>'
+    } else if (extension == "jpg") {
+      embed = '<img src="' + filePath + '">'
+    } else if (extension == "pdf") {
+      embed = '<iframe src="' + filePath + '" style="width:718px; height:700px;"></iframe>'
+    } else if (extension == "mp4") {
+      embed = '<video controls src="' + filePath + '"></video>'
+    } else if (extension == "mov") {
+      embed = '<video controls src="' + filePath + '"></video>'
+    }
+
+    //embed = filePath;
+    //console.log(embed)
+
+    database.data[index].media = embed;
+
+    console.log(database.data[index])
+
+    return embed;
+
+
+  });
 
 }
 
@@ -140,7 +189,7 @@ function makedataBase (data) {
     this.name.push(data[i].name);
     this.subhead.push(data[i].subhead);
     this.description.push(data[i].text);
-    //this.mediaType.push(data[i].mediaType);
+    this.mediaType.push(data[i].mediaType);
     this.date.push(data[i].date);
     this.tags.push(data[i].tags);
     this.id.push(data[i].id);
@@ -171,10 +220,21 @@ function makedataBase (data) {
     } else {
       tags = "general"
     }
+
+    var activeMedia = "nothing here"
+
+    console.log(item.data[e].media)
+
+    if (item.data[e].media == undefined) {
+      activeMedia = "nothing here"
+    } else {
+      activeMedia = item.data[e].media
+    }
+
     return '<div class="wrapper">' +
     "<h2>" + item.name[e] + "</h2>" + 
     "<h3>" + item.subhead[e] + "</h3>" +
-    "<p>" + item.description[e] + "</p>" +
+    "<p>" + activeMedia + "</p>" +
     "<span> date: " + item.date[e] + "</span> <br>" +
     "<span> tags: " + tags + ', general</span><br><button class="add-button" onClick="addtoQueue(' + item.id[e] + ')"> add to queue </button>' +
     "</div>";
