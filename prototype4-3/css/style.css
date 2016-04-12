@@ -1,8 +1,20 @@
 body {
 	margin: 0;
-	font-family: helvetica, arial, sans-serif;
+	font-family: Didot, Bodoni MT, serif;
 }
 
+<<<<<<< HEAD
+div.form-group{
+    position:relative;
+    align-items: left;
+    padding:10px;
+    
+}
+
+div.tagFilter{
+   width: 30%;
+    position: relative;
+=======
 video {
 	width:100%;
 }
@@ -10,24 +22,60 @@ video {
 div.halfWidth {
     width: 45%;
     /* border: 1px solid black; */
+>>>>>>> master
     float: left;
     height: 150px;
-    margin: 1%;
+    margin: 2%;
+    font-size: 12px;
+    box-sizing: border-box;
 }
 
+div.slider-range{
+    width: 200px;
+}
 
+div.dateFilter{
+    width: 30%;
+    position: relative;
+    float: left;
+      height: 150px;
+    margin: 2%;
+    font-size: 12px;
+    box-sizing: border-box;
+    
+}
+div.halfWidth {
+    width: 25%;
+    /* border: 1px solid black; */
+    position: left;
+    float: left;
+    height: 150px;
+    margin: 2%;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+div.banner{
+    font-family: Didot;
+    font-size: 18px;
+  position: relative;
+    float: center;
+    border: 1px solid #888484;
+    padding:20px;
+    text-align: center;
+    background-color: #e3f8eb;
+}
 
 div.addPerson {
 	position: relative;
 	float: right;
-	border: 1px solid black;
+	border: 1px solid #888484;
 	padding:20px;
 }
 
 div.content {
 	position: relative;
 	float: left;
-	border: 1px solid black;
+	border: 1px solid #888484;
 	padding:10px;
 	width: 65%;
 }
@@ -39,15 +87,15 @@ div.wrapper {
 }
 
 div.filters {
-	/*overflow: auto;*/
-	border-bottom: 1px solid black;
+	overflow: auto;
+	border-bottom: 1px solid #888484;
 	margin-bottom: 20px;
 }
 div.queue {
 	position: relative;
-	width: 300px;
-	height: 90%;
-	border-right: 1px solid black;
+	width: 30%;
+	height: 99%;
+	border-right: 1px solid #888484;
 	box-sizing: border-box;
 	float:left;
 	overflow: scroll;
@@ -76,6 +124,7 @@ div.item {
 
 .ui-widget-content {
 	height: 75px;
+    width: 200px;
 }
 
 #cart ol {
@@ -106,10 +155,60 @@ div.bottom-padding {
 }
 
 button.submit-button {
-	position: absolute;
+	position: relative;
+    /* float:right; */
 	right:10px;
 	top:30px;
 }
+
+div.viewAll{
+   position: relative;
+    /* float:right; */
+    box-sizing: border-box;
+    width: 30%;
+    float: left;
+	/*right:10px;
+	top:30px; */
+}
+
+div.tags{
+    position: relative;
+    float: left;
+    right: 10px;
+    top: 30px;
+    box-sizing: border-box;
+    width: 50%
+}
+
+div.tagArea{
+    position: relative;
+    float: top;
+    box-sizing: border-box;
+    width: 100%
+}
+
+div.searchArea{
+    position: relative;
+    float: bottom;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+div.search{
+    position: relative;
+    float: left;
+    box-sizing: border-box;
+    width:30%;
+}
+
+div.searchbox{
+    position:relative;
+    float:left;
+    box-sizing: border-box;
+    width:40%;
+    
+}
+
 
 button.add-button {
 	margin-top: 20px;
@@ -118,7 +217,7 @@ button.add-button {
 div.active {
 	position: relative;
 	float: left;
-	border: 1px solid black;
+	/*border: 1px solid #888484;*/
 	padding:10px;
 	width: 65%;
 	height: 500px;

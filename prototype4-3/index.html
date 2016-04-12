@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>our community is database</title>
+	<title>Community Historians- Westside ATL</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
@@ -27,40 +27,50 @@
 
 
   	</script>
+    
+    <div class="banner">
+    <h1>Westside Atlanta Community History</h1>
+    </div>
 
   	<div class="queue">
   		<!-- dynamically add drag n' drop thumbs here -->
   	</div>
 
 	<div class="filters">
-		<div class="halfWidth">
+		<div class="tagFilter">
 			<h1>Tag Filter:</h1>
-			<button onclick='database.appendAllTo(".content")'>View All</button>
+            <div class = "tagArea">
+			<button class = "viewAll" onclick='database.appendAllTo(".content")'>View All</button>
 
 			<select class="tags" onChange='database.appendAllByTag(".content", this.value)'>
-				<option><value="">general</option>
+				<option> <value=""> general</option>
 			</select>
+                </div>
 		<!--//******************************************//-->
 		<!--Ashley's code-->
-
-		<form role="form">
-	        <div class="form-group" style='float: left;'>
-	          <input type="text" style="margin-top:20px;" class="form-control input-lg" id="searchForm" placeholder="Search the database">
-	          		<div display='inline-block'>
+        <div class="searchArea">
+            <div class= "searchbox">   
+		      <form role="form">
+	        
+	          <input type="text"  id="searchForm" placeholder="Search the database">
+	   
 				<p style='float: left;' >Searched: &nbsp;</p>
 				<p style='float: left;' id="demo">None</p>
-			</div>
-	        </div>
+		 	
+		      </form>
+            </div>
+            <div class = "search">
+            <button type="submit" form="searchForm" value="Submit" onclick="database.mySearchFunction()">Search</button>
+                </div>
+            </div> 
 
-		</form>
-
-		<button type="submit" style='float: left;' form="searchForm" value="Submit" onclick="database.mySearchFunction()">Search</button>
+	
 
 
 
 		<!--//******************************************//-->
 		</div>
-		<div class="halfWidth">
+		<div class="dateFilter">
 			<h1>Date Filter:</h1>
 			<p>
 			  	<label for="amount">Year range:</label>
