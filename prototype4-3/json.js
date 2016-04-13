@@ -20,10 +20,6 @@ $().ready(function () {
     database = new makedataBase(parsedObjects);
     database.appendAllTo(".content") //not doing this anymore
 
-    if (typeof loadContent == 'function') { 
-      loadContent(); //this is specific to results
-    }
-
     if (typeof addtoQueue == 'function') { //this is specific to index
       // $("div.item").click(function(){
       //   var selection = $(this).html()
@@ -37,6 +33,46 @@ $().ready(function () {
 
   });
 });
+
+// $().ready(function () {
+//   var url = database.data[index].files.url
+//   //console.log(url)
+
+//   $.getJSON(url + "&callback=?", function (object) { //this is done dynamically, so doesn't load in right away!
+
+//     var filePath = object.data[0].file_urls.original;
+//     //console.log(filePath)
+
+//     var extension = filePath.substr(filePath.length - 3);
+
+//     var embed = "no media";
+//     if (extension == "mp3"){
+//       embed = '<audio controls><source src="' + filePath + '" type="audio/mpeg"></audio>'
+//     } else if (extension == "jpg") {
+//       embed = '<img src="' + filePath + '">'
+//     } else if (extension == "pdf") {
+//       embed = '<iframe src="' + filePath + '" style="width:718px; height:700px;"></iframe>'
+//     } else if (extension == "mp4") {
+//       embed = '<video controls src="' + filePath + '"></video>'
+//     } else if (extension == "mov") {
+//       embed = '<video controls src="' + filePath + '"></video>'
+//     }
+
+//     if (typeof loadContent == 'function') { 
+//       loadContent(embed); //this is specific to results
+//     }
+
+
+//     database.data[index].media = embed;
+//     //mediaList.push(embed)
+//     console.log(embed)
+
+
+//     return embed;
+
+
+//   });
+// });
 
 var uniqueTags = []
 
@@ -69,6 +105,8 @@ function makeTagDropdown (tagArray) {
   };
 }
 
+//var mediaList = [];
+
 function assignData(db, index) {
   var itemName = "no data returned";
   var itemSubhead = "media type"; //subhead is now media type
@@ -77,9 +115,6 @@ function assignData(db, index) {
   var itemTags = getTags(db, index);
   var itemId = db.data[index].id;
   var itemMedia = "no media"
-
-  //console.log(db.data[index].element_texts[5]) //media duration?
-  //console.log(db.data[index].element_texts[8])
 
   if (db.data[index].element_texts[0] != undefined) {
     itemName = db.data[index].element_texts[0].text;
@@ -110,12 +145,6 @@ function assignData(db, index) {
     "media" : itemMedia,
   }
 
-  // if (db.data[index].files.count > 0) {
-  //   getMedia(db, index, entireItem);
-  // } else {
-  //   addToPage(itemName, itemSubhead, itemDate, itemMedia, itemText, itemTags, itemId)
-  // }
-
   return itemObject;
 
 }
@@ -144,12 +173,59 @@ function getMedia(db, index, item) {
       embed = '<video controls src="' + filePath + '"></video>'
     }
 
+    if (typeof loadContent == 'function') { 
+      loadContent(db, embed, index); //this is specific to results
+    }
+
+
+    database.data[index].media = embed;
+    //mediaList.push(embed)
+    //console.log(embed)
+
+
+    return embed;
+
+
+  });
+
+}
+
+function getMediaForSlideshow(db, index, item) {
+  var url = db.data[index].files.url
+  //console.log(url)
+
+  $.getJSON(url + "&callback=?", function (object) { //this is done dynamically, so doesn't load in right away!
+
+    var filePath = object.data[0].file_urls.original;
+    //console.log(filePath)
+
+    var extension = filePath.substr(filePath.length - 3);
+
+    var embed = "no media";
+    if (extension == "mp3"){
+      embed = '<audio controls><source src="' + filePath + '" type="audio/mpeg"></audio>'
+    } else if (extension == "jpg") {
+      embed = '<img src="' + filePath + '">'
+    } else if (extension == "pdf") {
+      embed = '<iframe src="' + filePath + '" style="width:718px; height:700px;"></iframe>'
+    } else if (extension == "mp4") {
+      embed = '<video controls src="' + filePath + '"></video>'
+    } else if (extension == "mov") {
+      embed = '<video controls src="' + filePath + '"></video>'
+    }
+
     //embed = filePath;
     //console.log(embed)
 
     database.data[index].media = embed;
+    item.push(embed)
 
-    console.log(database.data[index])
+    contentArray.push({html: item})
+    //$("div#")
+    console.log(item)
+    //console.log(embed)
+
+    //console.log(database.data[index])
 
     return embed;
 
@@ -223,7 +299,7 @@ function makedataBase (data) {
 
     var activeMedia = "nothing here"
 
-    console.log(item.data[e].media)
+    //console.log(item.data[e].media)
 
     if (item.data[e].media == undefined) {
       activeMedia = "nothing here"
@@ -270,7 +346,7 @@ function makedataBase (data) {
     $("div.queue").empty();
     for (var i = 0; i < data.length; i++) {
       $(divName).append(addEntry(this,i));
-      console.log("no issues here")
+      //console.log("no issues here")
       $("div.queue").append(addTitle(this,i));
     };
     clickQueueItem();
@@ -306,7 +382,7 @@ function makedataBase (data) {
 
   this.mySearchFunction = function () {
       var x = document.getElementById("searchForm").value;
-      document.getElementById("demo").innerHTML = x;
+      //document.getElementById("demo").innerHTML = x;
       var count = 0;
       $("div.queue").empty();
     

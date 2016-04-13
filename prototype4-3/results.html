@@ -18,7 +18,7 @@
 	<div class="fotorama-container">
 		<div class="fotorama" data-width="100%" data-height="100%" data-loop="false" data-nav="false" data-autoplay="false" data-stopautoplayontouch="true" data-max-width="100%" data-arrows="true" data-nav="dots">
 			<!--content goes here -->
-			<h1>loading presentation...</h1>
+			<h1>preparing presentation...</h1>
 		</div>
 	</div>
 
@@ -27,17 +27,61 @@
 
 		var query = window.location.search.slice(1);
 		var contentArray = []
-		function loadContent () {
+		function loadContent (db, media, index) {
+
+			//console.log(media);
 			var res = query.split("&");
 
 			for (var i = 0; i < res.length; i++) {
 				var results =  parseSpecial(res[i]);
-				var append = grabObject(results)
-				contentArray.push({html: append})
+				//console.log(results)
+				if (db.data[index].id == results) {
+					var append = grabObject(results)
+					var toPush = append + media;
+					contentArray.push({html: toPush})
+					fotorama.load(contentArray);
+				}
 			};
+		}
 
-			console.log(res);
-			fotorama.load(contentArray);
+		function getTheMedia(index) {
+			var url = database.data[index].files.url
+			  //console.log(url)
+
+			  $.getJSON(url + "&callback=?", function (object) { //this is done dynamically, so doesn't load in right away!
+
+			    var filePath = object.data[0].file_urls.original;
+			    //console.log(filePath)
+
+			    var extension = filePath.substr(filePath.length - 3);
+
+			    var embed = "no media";
+			    if (extension == "mp3"){
+			      embed = '<audio controls><source src="' + filePath + '" type="audio/mpeg"></audio>'
+			    } else if (extension == "jpg") {
+			      embed = '<img src="' + filePath + '">'
+			    } else if (extension == "pdf") {
+			      embed = '<iframe src="' + filePath + '" style="width:718px; height:700px;"></iframe>'
+			    } else if (extension == "mp4") {
+			      embed = '<video controls src="' + filePath + '"></video>'
+			    } else if (extension == "mov") {
+			      embed = '<video controls src="' + filePath + '"></video>'
+			    }
+
+			    if (typeof loadContent == 'function') { 
+			      loadContent(embed); //this is specific to results
+			    }
+
+
+			    database.data[index].media = embed;
+			    //mediaList.push(embed)
+			    //console.log(embed)
+
+
+			    return embed;
+
+
+			  });
 		}
 
 		function parseSpecial(string) {
@@ -51,8 +95,14 @@
 				if (name == database.id[i]) {
 					var name = database.name[i];
 					var subhead = database.subhead[i];
-					var description = database.description[i]
-					var returnObject = '<div class="item"><h1 class="item">' + name + '</h1><h2 class="item">' + subhead + '</h2><p class="item">' + description + '</p></div>'
+					var description = database.description[i];
+					var itemID = database.data[i].id;
+					//console.log(mediaItem)
+					var returnObject = '<div class="item"><h1 class="item">' + name + '</h1><h2 class="item">' + subhead + '</h2><div id="' + itemID + '">' + itemID + '</div><p class="item">' + description + '</p></div>';
+					// var testMedia = getMedia(database, i, returnObject)
+					//console.log(returnObject)
+					//getMediaForSlideshow(database, i, returnObject)
+					//contentArray.push({html: returnObject})
 					return returnObject;
 				}
 			};

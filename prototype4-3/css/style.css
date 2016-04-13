@@ -1,9 +1,25 @@
 body {
 	margin: 0;
-	font-family: Didot, Bodoni MT, serif;
+	/*font-family: Didot, Bodoni MT, serif;*/
+    font-family: helvetica, arial, sans-serif;
 }
 
-<<<<<<< HEAD
+h1 {
+    font-size: 1.5em;
+}
+
+video {
+    width:100%;
+}
+
+iframe {
+    width:100%;
+}
+
+a {
+    color:white;
+}
+
 div.form-group{
     position:relative;
     align-items: left;
@@ -11,18 +27,23 @@ div.form-group{
     
 }
 
+div.filter {
+    position: relative;
+    width:29%;
+    float: left;
+    box-sizing: border-box;
+    margin: 2%;
+}
+
 div.tagFilter{
    width: 30%;
     position: relative;
-=======
-video {
-	width:100%;
+    float: left;
 }
 
 div.halfWidth {
     width: 45%;
     /* border: 1px solid black; */
->>>>>>> master
     float: left;
     height: 150px;
     margin: 2%;
@@ -55,14 +76,29 @@ div.halfWidth {
     box-sizing: border-box;
 }
 div.banner{
-    font-family: Didot;
+    /*font-family: Didot;*/
     font-size: 18px;
-  position: relative;
-    float: center;
+    position: relative;
+    /*float: center;*/
     border: 1px solid #888484;
+    padding:0 20px;
+    /*text-align: center;*/
+    background-color: #22495e;
+    color:white;
+    overflow: auto;
+}
+
+h1.title {
+    float:left;
+}
+
+div.menu {
+    float:right;
     padding:20px;
-    text-align: center;
-    background-color: #e3f8eb;
+}
+
+span.menu-item {
+    padding:20px;
 }
 
 div.addPerson {
@@ -94,7 +130,7 @@ div.filters {
 div.queue {
 	position: relative;
 	width: 30%;
-	height: 99%;
+	height: 84%;
 	border-right: 1px solid #888484;
 	box-sizing: border-box;
 	float:left;
@@ -156,7 +192,7 @@ div.bottom-padding {
 
 button.submit-button {
 	position: relative;
-    /* float:right; */
+    float:right; 
 	right:10px;
 	top:30px;
 }
@@ -220,5 +256,18 @@ div.active {
 	/*border: 1px solid #888484;*/
 	padding:10px;
 	width: 65%;
-	height: 500px;
+	/*min-height: 500px;*/
+}
+
+div.footer-padding {
+    position: relative;
+    float: left;
+    height: 75px;
+    width: 100%;
+    /*margin-top:50px;*/
+}
+
+/* jquery UI */
+div#slider-range {
+    width:65%;
 }

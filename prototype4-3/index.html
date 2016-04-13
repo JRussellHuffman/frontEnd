@@ -12,7 +12,8 @@
 	<!-- <script type="text/javascript" src="libraries/jquery.js"></script> -->
 
 	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"> -->
-	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
 	<script>
@@ -29,48 +30,30 @@
   	</script>
     
     <div class="banner">
-    <h1>Westside Atlanta Community History</h1>
+    	<h1 class="title">Community Historians</h1>
+    	<div class="menu">
+    		<a href="#"><span class="menu-item">Browse</span></a>
+    		<a href="#"><span class="menu-item">Submit</span></a>
+    		<a href="#"><span class="menu-item">About</span></a>
+    	</div>
     </div>
 
   	<div class="queue">
+  		<h3>loading stories...</h3>
   		<!-- dynamically add drag n' drop thumbs here -->
   	</div>
 
 	<div class="filters">
-		<div class="tagFilter">
+		<div class="tag filter">
 			<h1>Tag Filter:</h1>
             <div class = "tagArea">
 			<button class = "viewAll" onclick='database.appendAllTo(".content")'>View All</button>
-
-			<select class="tags" onChange='database.appendAllByTag(".content", this.value)'>
-				<option> <value=""> general</option>
-			</select>
-                </div>
-		<!--//******************************************//-->
-		<!--Ashley's code-->
-        <div class="searchArea">
-            <div class= "searchbox">   
-		      <form role="form">
-	        
-	          <input type="text"  id="searchForm" placeholder="Search the database">
-	   
-				<p style='float: left;' >Searched: &nbsp;</p>
-				<p style='float: left;' id="demo">None</p>
-		 	
-		      </form>
+				<select class="tags" onChange='database.appendAllByTag(".content", this.value)'>
+					<option> <value=""> general</option>
+				</select>
             </div>
-            <div class = "search">
-            <button type="submit" form="searchForm" value="Submit" onclick="database.mySearchFunction()">Search</button>
-                </div>
-            </div> 
-
-	
-
-
-
-		<!--//******************************************//-->
 		</div>
-		<div class="dateFilter">
+		<div class="date filter">
 			<h1>Date Filter:</h1>
 			<p>
 			  	<label for="amount">Year range:</label>
@@ -78,9 +61,28 @@
 			</p>
 			<div id="slider-range" style="margin-bottom:20px;"></div>
 		</div>
+		<div class="search filter">
+			<h1>Search:</h1>
+	        <div class="searchArea">
+	            <div class= "searchbox">   
+			      <form role="form">
+		        
+		          <input type="text"  id="searchForm" placeholder="Search the database">
+		   
+					<!-- <p style='float: left;' >Searched: &nbsp;</p>
+					<p style='float: left;' id="demo">None</p> -->
+			 	
+			      </form>
+	            </div>
+	            <div class = "search">
+	            <button type="submit" form="searchForm" value="Submit" onclick="database.mySearchFunction()">Search</button>
+	            </div>
+	        </div> 
+		</div>
 	</div>
-	<div class="active"></div>
-	<!-- <div class="content"></div> -->
+	<div class="active">
+		<h3>the active story goes here</h3>
+	</div>
 	<div id="cart">
 	  	<button class="submit-button" onclick="submitQueue()">Submit</button>
 	  	<div class="ui-widget-content">
@@ -89,10 +91,12 @@
 	    	</ol>
 	  	</div>
 	</div>
+	<div class="footer-padding"></div>
 	<!-- <div class="bottom-padding"></div> -->
 
 	<script type="text/javascript">
 		function addtoQueue(selectedItem) {
+			$("li.placeholder").remove();
 			var selection = selectedItem;
 			$("ol").append('<li>' + selection + '</li>');
 			addToURL += selection + "&";
