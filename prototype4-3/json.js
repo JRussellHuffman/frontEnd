@@ -318,7 +318,7 @@ function makedataBase (data) {
   }
 
   function addTitle(item, e) { //to the thumbnails
-    return '<div class="item ui-draggable ui-draggable-handle" item-id="' + item.id[e] + '">' + item.name[e] + '</div>'
+    return '<div class="item ui-draggable ui-draggable-handle" item-id="' + item.id[e] + '">' + item.name[e] + '<div class="add-straight-to-queue">+</div></div>'
   }
 
   this.searchbyDate = function (divName, startDate, endDate) {

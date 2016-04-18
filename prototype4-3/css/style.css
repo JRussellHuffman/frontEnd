@@ -142,6 +142,7 @@ div.queue {
 }
 
 div.item {
+    position: relative;
     padding:10px;
     background: #e6e6e6;
     margin:10px;
@@ -149,6 +150,15 @@ div.item {
     list-style: none;
     cursor: all-scroll;
     z-index: 2;
+}
+
+div.add-straight-to-queue {
+    position: absolute;
+    right: 0;
+    background: red;
+    padding: 5px;
+    top: 15px;
+    border-radius: 20px;
 }
 
 #cart { 
