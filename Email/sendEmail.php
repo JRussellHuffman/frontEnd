@@ -4,8 +4,9 @@ $senderEmail = filterInput($_POST['semail']);
 $recipientEmail = filterInput($_POST['remail']); 
 $message = filterInput($_POST['Message']);
 $subject = filterInput($_POST['Subject']);
+$attachment = filterInput($_POST['attach1']);
  
-echo $senderEmail.$recipientEmail.$message.$subject;
+echo $senderEmail.$recipientEmail.$message.$subject.$attachment;
 if(sendEmailWithAttachments($recipientEmail,$senderEmail,$subject,$message))
 {
     echo "Email sent successfully!";
