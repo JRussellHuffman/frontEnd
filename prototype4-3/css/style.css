@@ -20,6 +20,10 @@ a {
     color:white;
 }
 
+img {
+    width:100%;
+}
+
 div.form-group{
     position:relative;
     align-items: left;
@@ -270,4 +274,10 @@ div.footer-padding {
 /* jquery UI */
 div#slider-range {
     width:65%;
+}
+
+/* fotorama stuff */
+
+div.fotorama__stage__frame {
+    overflow: scroll;
 }
