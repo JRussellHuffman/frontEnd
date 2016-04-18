@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel='stylesheet' type='text/css' href='sendEmail.css'/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ 
+<script type='text/javascript' src='validateEmail.js'></script>
+</head>
+<body>
+    <form name="contactform" class="contactform" method="post" onsubmit="return validateForm()"  action="sendEmail.php">
+        <label>Sender Email:</label>
+        <input type="text" id="semail" name="semail" />
+        <label>Recipient Email:</label>
+        <input type="text" id="remail" name="remail" value="" />
+        <label for="Subject">Subject:</label>
+        <input type="text" name="Subject" id="Subject" />
+        <label for="Attachment">Attachment:</label>
+        <input type="file" name="attach1" id="attach1" />
+        <label for="Message">Message:</label><br />
+        <textarea name="Message" rows="20" cols="20" id="Message"></textarea>
+        <div class="submit-btn">
+        <input type="submit"/>
+        </div>
+    </form>
+</body>
+</html>
