@@ -39,7 +39,7 @@
     </div>
 
   	<div class="queue">
-  		<h3>loading stories...</h3>
+  		<h3 class="placeholder">loading stories...</h3>
   		<!-- dynamically add drag n' drop thumbs here -->
   	</div>
 
@@ -81,13 +81,14 @@
 		</div>
 	</div>
 	<div class="active">
-		<h3>the active story goes here</h3>
+		<h3 class="placeholder">the active story goes here</h3>
 	</div>
 	<div id="cart">
 	  	<button class="submit-button" onclick="submitQueue()">Submit</button>
 	  	<div class="ui-widget-content">
 	    	<ol>
-	      		<li class="placeholder">Add your items here</li>
+	      		<!-- <li class="placeholder">Add your items here</li> -->
+	      		<h3 class="placeholder" id="queue-starter">Item Queue Here</h3>
 	    	</ol>
 	  	</div>
 	</div>
@@ -95,14 +96,23 @@
 	<!-- <div class="bottom-padding"></div> -->
 
 	<script type="text/javascript">
-		function addtoQueue(selectedItem) {
-			$("li.placeholder").remove();
-			var selection = selectedItem;
-			$("ol").append('<li>' + selection + '</li>');
+	var selection;
+		function addtoQueue(selectedItem, itemTitle) {
+			//console.log(itemTitle)
+			$("#queue-starter").remove();
+			selection = selectedItem;
+			$("ol").append('<li>' + itemTitle.substring(0,8) + '...<div class="remove" id="' + selection + '" onclick="removeFromQueue(' + selection + ')">x</div></li>');
 			addToURL += selection + "&";
 			// console.log(addToURL.substring(0, addToURL.length - 1))
         	var res = addToURL.split("&");
         	queueList = addToURL.substring(0, addToURL.length - 1); //remove last character (ampersand) so as to not have an empty slide in the slideshow
+        	//console.log(addToURL)
+		}
+
+		function removeFromQueue(id) {
+			$("div#" + id).parent().remove();
+			var removeFromURL = addToURL.replace(id + "&", "");
+			addToURL = removeFromURL;
 		}
 
 

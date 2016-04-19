@@ -15,7 +15,7 @@ $().ready(function () {
       parsedObjects.push(addItem);
     };
 
-    console.log(parsedObjects)
+    //console.log(parsedObjects)
 
     database = new makedataBase(parsedObjects);
     database.appendAllTo(".content") //not doing this anymore
@@ -312,13 +312,13 @@ function makedataBase (data) {
     "<h3>" + item.subhead[e] + "</h3>" +
     "<p>" + activeMedia + "</p>" +
     "<span> date: " + item.date[e] + "</span> <br>" +
-    "<span> tags: " + tags + ', general</span><br><button class="add-button" onClick="addtoQueue(' + item.id[e] + ')"> add to queue </button>' +
+    "<span> tags: " + tags + ', general</span><br><button class="add-button" onClick=\'addtoQueue(' + item.id[e] + ',\"'+ item.name[e] + '\")\'> add to queue </button>' +
     "</div>";
 
   }
 
   function addTitle(item, e) { //to the thumbnails
-    return '<div class="item ui-draggable ui-draggable-handle" item-id="' + item.id[e] + '">' + item.name[e] + '<div class="add-straight-to-queue">+</div></div>'
+    return '<div class="item ui-draggable ui-draggable-handle" item-id="' + item.id[e] + '">' + item.name[e] + '<div class="add-straight-to-queue" onclick=\'addtoQueue(' + item.id[e] + ',\"' + item.name[e] + '\")\'>+</div></div>'
   }
 
   this.searchbyDate = function (divName, startDate, endDate) {
@@ -363,9 +363,9 @@ function makedataBase (data) {
 
 
   function clickQueueItem (item) {
-    console.log("start this function")
+    //console.log("start this function")
     $("div.item").click(function(){
-      console.log("click this function")
+      //console.log("click this function")
       var itemID = $(this).attr("item-id");
       database.appendThisTo("active", itemID);
     })

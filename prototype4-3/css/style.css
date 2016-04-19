@@ -8,6 +8,10 @@ h1 {
     font-size: 1.5em;
 }
 
+h3.placeholder {
+    margin-left: 20px;
+}
+
 video {
     width:100%;
 }
@@ -143,22 +147,26 @@ div.queue {
 
 div.item {
     position: relative;
-    padding:10px;
+    padding:10px 20px;
     background: #e6e6e6;
     margin:10px;
     text-align: center;
     list-style: none;
     cursor: all-scroll;
     z-index: 2;
+    cursor: pointer;
 }
 
 div.add-straight-to-queue {
     position: absolute;
-    right: 0;
-    background: red;
-    padding: 5px;
-    top: 15px;
+    right: -8px;
+    background: #d3d3d3;
+    padding: 2px 8px 5px;
+    top: 50%;
     border-radius: 20px;
+    margin-top: -13px;
+    border: 1px solid #888;
+    cursor: pointer;
 }
 
 #cart { 
@@ -168,7 +176,7 @@ div.add-straight-to-queue {
     position: fixed;
     bottom: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
     height: 75px;
 }
 
@@ -189,12 +197,23 @@ ol {
 }
 
 li {
+    position: relative;
     background: #e6e6e6;
     padding:10px;
     margin:20px;
     list-style: none;
     float:left;
     cursor: all-scroll;
+}
+
+div.remove {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    padding: 1px 6px 2px 7px;
+    background: #d3d3d3;
+    border-radius: 20px;
+    border: 1px solid #888;
 }
 
 div.bottom-padding {
