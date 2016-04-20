@@ -5,6 +5,7 @@
 <title>Simple Ajax Contact Form</title>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
 <script type="text/javascript">
 $(document).ready(function() {
     $("#submit_btn").click(function() { 
@@ -73,6 +74,17 @@ $(document).ready(function() {
 </head>
 
 <body>
+    <!-- added header -->
+    <div class="banner">
+        <a class="title" href="../../index.html"><h1 class="title">Community Historians</h1></a>
+        <div class="menu">
+            <a href="../../index.html"><span class="menu-item">Browse</span></a>
+            <a href="email/ajax-contact-with-attachment/index.php"><span class="menu-item">Upload</span></a>
+            <a href="#"><span class="menu-item">About</span></a>
+        </div>
+    </div>
+    <!-- end added header -->
+
 <div class="form-style" id="contact_form">
     <div class="form-style-heading">Please Contact Us</div>
     <div id="contact_results"></div>
