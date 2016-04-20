@@ -2,7 +2,7 @@
 if($_POST)
 {
     $to_email       = "jrussellhuffman@gmail.com"; //Recipient email, Replace with own email here
-	$from_email 	= "noreply@YOUR-DOMAIN.com"; //From email address (eg: no-reply@YOUR-DOMAIN.com)
+	$from_email 	=  $user_name; //From email address (eg: no-reply@YOUR-DOMAIN.com)
 	
     //check if its an ajax request, exit if not
     if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
