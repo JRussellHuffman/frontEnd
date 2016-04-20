@@ -34,45 +34,6 @@ $().ready(function () {
   });
 });
 
-// $().ready(function () {
-//   var url = database.data[index].files.url
-//   //console.log(url)
-
-//   $.getJSON(url + "&callback=?", function (object) { //this is done dynamically, so doesn't load in right away!
-
-//     var filePath = object.data[0].file_urls.original;
-//     //console.log(filePath)
-
-//     var extension = filePath.substr(filePath.length - 3);
-
-//     var embed = "no media";
-//     if (extension == "mp3"){
-//       embed = '<audio controls><source src="' + filePath + '" type="audio/mpeg"></audio>'
-//     } else if (extension == "jpg") {
-//       embed = '<img src="' + filePath + '">'
-//     } else if (extension == "pdf") {
-//       embed = '<iframe src="' + filePath + '" style="width:718px; height:700px;"></iframe>'
-//     } else if (extension == "mp4") {
-//       embed = '<video controls src="' + filePath + '"></video>'
-//     } else if (extension == "mov") {
-//       embed = '<video controls src="' + filePath + '"></video>'
-//     }
-
-//     if (typeof loadContent == 'function') { 
-//       loadContent(embed); //this is specific to results
-//     }
-
-
-//     database.data[index].media = embed;
-//     //mediaList.push(embed)
-//     console.log(embed)
-
-
-//     return embed;
-
-
-//   });
-// });
 
 var uniqueTags = []
 
@@ -318,7 +279,7 @@ function makedataBase (data) {
   }
 
   function addTitle(item, e) { //to the thumbnails
-    return '<div class="item ui-draggable ui-draggable-handle" item-id="' + item.id[e] + '">' + item.name[e] + '<div class="add-straight-to-queue" onclick=\'addtoQueue(' + item.id[e] + ',\"' + item.name[e] + '\")\'>+</div></div>'
+    return '<div class="item ' + item.subhead[e] + ' ui-draggable ui-draggable-handle" item-id="' + item.id[e] + '">' + item.name[e] + '<div class="add-straight-to-queue" onclick=\'addtoQueue(' + item.id[e] + ',\"' + item.name[e] + '\")\'>+</div></div>'
   }
 
   this.searchbyDate = function (divName, startDate, endDate) {
