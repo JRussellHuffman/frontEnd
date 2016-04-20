@@ -32,8 +32,8 @@ $(document).ready(function() {
             var m_data = new FormData();    
             m_data.append( 'user_name', $('input[name=name]').val());
             m_data.append( 'user_email', $('input[name=email]').val());
-            m_data.append( 'country_code', $('input[name=phone1]').val());
-            m_data.append( 'phone_number', $('input[name=phone2]').val());
+            // m_data.append( 'country_code', $('input[name=phone1]').val());
+            // m_data.append( 'phone_number', $('input[name=phone2]').val());
             m_data.append( 'subject', $('select[name=subject]').val());
 			m_data.append( 'msg', $('textarea[name=message]').val());
 			m_data.append( 'file_attach', $('input[name=file_attach]')[0].files[0]);
@@ -83,9 +83,9 @@ $(document).ready(function() {
         <label><span>Email <span class="required">*</span></span>
             <input type="email" name="email" required="true" class="input-field"/>
         </label>
-        <label><span>Phone <span class="required">*</span></span>
+        <!-- <label><span>Phone <span class="required">*</span></span>
             <input type="text" name="phone1" maxlength="4" placeholder="+91"  required="true" class="tel-number-field"/>&mdash;<input type="text" name="phone2" maxlength="15"  required="true" class="tel-number-field long" />
-        </label>
+        </label> -->
         <label><span>Attachment</span>
             <input type="file" name="file_attach" class="input-field" />
         </label>
