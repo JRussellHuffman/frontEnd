@@ -2,7 +2,7 @@
 if($_POST)
 {
     $to_email       = "jrussellhuffman@gmail.com"; //Recipient email, Replace with own email here
-	$from_email 	= "noreply@YOUR-DOMAIN.com"; //From email address (eg: no-reply@YOUR-DOMAIN.com)
+	$from_email 	=  $user_name ; //From email address (eg: no-reply@YOUR-DOMAIN.com)
 	
     //check if its an ajax request, exit if not
     if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
@@ -30,14 +30,14 @@ if($_POST)
         $output = json_encode(array('type'=>'error', 'text' => 'Please enter a valid email!'));
         die($output);
     }
-    if(!filter_var($country_code, FILTER_VALIDATE_INT)){ //check for valid numbers in country code field
-        $output = json_encode(array('type'=>'error', 'text' => 'Enter only digits in country code'));
-        die($output);
-    }
-    if(!filter_var($phone_number, FILTER_SANITIZE_NUMBER_FLOAT)){ //check for valid numbers in phone number field
-        $output = json_encode(array('type'=>'error', 'text' => 'Enter only digits in phone number'));
-        die($output);
-    }
+    // if(!filter_var($country_code, FILTER_VALIDATE_INT)){ //check for valid numbers in country code field
+    //     $output = json_encode(array('type'=>'error', 'text' => 'Enter only digits in country code'));
+    //     die($output);
+    // }
+    // if(!filter_var($phone_number, FILTER_SANITIZE_NUMBER_FLOAT)){ //check for valid numbers in phone number field
+    //     $output = json_encode(array('type'=>'error', 'text' => 'Enter only digits in phone number'));
+    //     die($output);
+    // }
     if(strlen($subject)<3){ //check emtpy subject
         $output = json_encode(array('type'=>'error', 'text' => 'Subject is required'));
         die($output);
