@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Simple Ajax Contact Form</title>
+<title>Upload Content</title>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../css/style.css">
@@ -80,7 +80,7 @@ $(document).ready(function() {
         <div class="menu">
             <a href="../../index.html"><span class="menu-item">Browse</span></a>
             <a href="email/ajax-contact-with-attachment/index.php"><span class="menu-item">Upload</span></a>
-            <a href="#"><span class="menu-item">About</span></a>
+            <a href="http://archive.ourcommunity.is/about"><span class="menu-item">About</span></a>
         </div>
     </div>
     <!-- end added header -->
