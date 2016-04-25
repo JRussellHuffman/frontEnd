@@ -29,6 +29,10 @@ img {
     width:100%;
 }
 
+img.brand {
+    width: 185px;
+}
+
 div.audio{
     background: #c3c0d1 !important;
 }
