@@ -2,7 +2,7 @@
 if($_POST)
 {
     $to_email       = "jrussellhuffman@gmail.com"; //Recipient email, Replace with own email here
-	$from_email 	=  $user_name ; //From email address (eg: no-reply@YOUR-DOMAIN.com)
+	$from_email 	=  "no-reply@YOUR-DOMAIN.com" ; //From email address (eg: no-reply@YOUR-DOMAIN.com)
 	
     //check if its an ajax request, exit if not
     if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
@@ -16,8 +16,8 @@ if($_POST)
     //Sanitize input data using PHP filter_var().
     $user_name      = filter_var($_POST["user_name"], FILTER_SANITIZE_STRING);
     $user_email     = filter_var($_POST["user_email"], FILTER_SANITIZE_EMAIL);
-    $country_code   = filter_var($_POST["country_code"], FILTER_SANITIZE_NUMBER_INT);
-    $phone_number   = filter_var($_POST["phone_number"], FILTER_SANITIZE_NUMBER_INT);
+    // $country_code   = filter_var($_POST["country_code"], FILTER_SANITIZE_NUMBER_INT);
+    // $phone_number   = filter_var($_POST["phone_number"], FILTER_SANITIZE_NUMBER_INT);
     $subject        = filter_var($_POST["subject"], FILTER_SANITIZE_STRING);
     $message        = filter_var($_POST["msg"], FILTER_SANITIZE_STRING);
    
